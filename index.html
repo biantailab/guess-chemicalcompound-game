@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猜化合物游戏</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>猜化合物游戏</h1>
+    <p>一款类Wordle猜化合物游戏</p>
+    <div id="center">
+        <p>玩法非常简单：</p>
+        <img src="imgs/C.png" alt=""/>
+        <span>绿色表示这个元素在正确答案中出现过，且位置相同。</span>
+        <br>
+        <img src="imgs/H.png" alt=""/>
+        <span>黄色表示这个元素在正确答案中出现过，但位置不同。</span>
+        <br>
+        <img src="imgs/O.png" alt=""/>
+        <span>灰色表示这个元素在正确答案中没有出现过。</span>
+        <br>
+        <span style="color: #4caf50; font-size: 15px;"><b>气体</b></span>
+        <span style="color: #000000; ">绿色的常温状态表示和正确答案一样。</span>
+        <br>
+        <span style="color: #9e9e9e; font-size: 15px;"><b>固体</b></span>
+        <span style="color: #000000; ">灰色的常温状态表示和正确答案不同。</span>
+        <br>
+        <span> ⬆️ 表示答案分子量小于该分子量。</span>
+        <br>
+        <span> ⬇️ 表示答案分子量大于该分子量。</span>
+        <br>
+        <span>当不知道猜啥的时候可以点击「随机」按钮，</span>
+        <span>猜不出来的时候可以点击「揭晓」按钮，查看正确答案。</span>
+        <br>
+        <span>注：化学式中的根离子是多元素的且是多个的需要带括号，例如「Al2(SO4)3」。</span>
+    </div>
+    <div id="input-area">
+        <button id="replay-btn">刷新</button>
+        <button id="random-btn">随机</button>
+        <button id="reveal-btn">揭晓</button>
+        <br><br>
+        <input type="text" id="formula-input" placeholder="输入化学式（如NaCl,区分大小写）" maxlength="10">
+        <br><br>
+        <button id="submit-btn">提交</button>
+    </div>
+    <div id="hint"></div>
+    <div id="game-board"></div>
+    <div id="win-animation">恭喜你猜对了！</div>
+    <div id="fail-animation"></div>
+    <div id="empty-input-animation">请输入化学式！</div>
+    <div id="too-long-input-animation">输入不能超过10个元素！</div>
+    <div id="history"></div>
+
+    <script src="js/game3.js"></script>
+    <script src="js/help.js"></script>
+</body>
+</html>

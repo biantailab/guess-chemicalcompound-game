@@ -1,0 +1,265 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+}
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(10, 40px);
+    gap: 5px;
+    margin: 20px 0;
+}
+
+.cell {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #fff;
+}
+
+.correct {
+    background-color: #4caf50;
+    color: white;
+}
+
+.present {
+    background-color: #ffeb3b;
+    color: rgb(255, 255, 255);
+}
+
+.absent {
+    background-color: #9e9e9e;
+    color: white;
+}
+
+#center {
+    margin-right: 10px;
+    font-size: 15px;
+}
+
+#center img {
+    width: 30px;
+    height: 30px;
+    vertical-align:middle;
+  }
+  
+#input-area {
+    margin: 20px 0;
+    text-align: center;
+}
+
+#formula-input {
+    padding: 10px;
+    font-size: 13px;
+    width: 200px;
+}
+
+#submit-btn, #random-btn, #reveal-btn, #replay-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+#submit-btn:hover, #random-btn:hover, #reveal-btn:hover, #replay-btn:hover {
+    background-color: #1976d2;
+}
+
+#hint {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+#hint .state-correct {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+#hint .state-incorrect {
+    color: #9e9e9e;
+    font-weight: bold;
+}
+
+#history {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+.history-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.history-formula {
+    width: 100px;
+    font-size: 16px;
+}
+
+.history-cells {
+    display: grid;
+    grid-template-columns: repeat(10, 30px);
+    gap: 3px;
+}
+
+.history-cell {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.history-state {
+    width: 80px;
+    font-size: 16px;
+}
+
+.history-state.state-correct {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.history-state.state-incorrect {
+    color: #9e9e9e;
+    font-weight: bold;
+}
+
+.history-molecular {
+    flex: 1;
+    font-size: 16px;
+}
+
+/* 胜利动画样式 */
+#win-animation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background-color: #4caf50;
+    color: white;
+    padding: 20px 40px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 10px;
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    z-index: 1000;
+    display: none;
+}
+
+#win-animation.show {
+    display: block;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+#win-animation.hide {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+}
+
+/* 失败动画样式 */
+#fail-animation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background-color: #f44336;
+    color: white;
+    padding: 20px 40px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 10px;
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    z-index: 1000;
+    display: none;
+}
+
+#fail-animation.show {
+    display: block;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+#fail-animation.hide {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+}
+
+/* 空输入动画样式 */
+#empty-input-animation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background-color: #ff9800;
+    color: white;
+    padding: 20px 40px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 10px;
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    z-index: 1000;
+    display: none;
+}
+
+#empty-input-animation.show {
+    display: block;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+#empty-input-animation.hide {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+}
+
+/* 超长输入动画样式 */
+#too-long-input-animation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background-color: #ff9800;
+    color: white;
+    padding: 20px 40px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 10px;
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    z-index: 1000;
+    display: none;
+}
+
+#too-long-input-animation.show {
+    display: block;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+#too-long-input-animation.hide {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+}
